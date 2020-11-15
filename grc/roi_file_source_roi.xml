@@ -1,0 +1,76 @@
+<block>
+  <name>File Source ROI</name>
+  <key>roi_file_source_roi</key>
+  <category>[ROI]</category>
+  <import>import roi</import>
+
+  <make>roi.file_source_roi($type.size*$vlen, $file, $is_tx_file, $role)</make>
+  <callback>open($file)</callback>
+  <param>
+    <name>File</name>
+    <key>file</key>
+    <value/>
+    <type>file_open</type>
+  </param>
+  <param>
+    <name>Output Type</name>
+    <key>type</key>
+    <type>enum</type>
+    <option>
+      <name>Complex</name>
+      <key>complex</key>
+      <opt>size:gr.sizeof_gr_complex</opt>
+    </option>
+    <option>
+      <name>Float</name>
+      <key>float</key>
+      <opt>size:gr.sizeof_float</opt>
+    </option>
+    <option>
+      <name>Int</name>
+      <key>int</key>
+      <opt>size:gr.sizeof_int</opt>
+    </option>
+    <option>
+      <name>Short</name>
+      <key>short</key>
+      <opt>size:gr.sizeof_short</opt>
+    </option>
+    <option>
+      <name>Byte</name>
+      <key>byte</key>
+      <opt>size:gr.sizeof_char</opt>
+    </option>
+  </param>
+  <param>
+    <name>Tx File</name>
+    <key>is_tx_file</key>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+  <param>
+    <name>Role</name>
+    <key>role</key>
+    <value>0</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Vec Length</name>
+    <key>vlen</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+  <check>$vlen > 0</check>
+  <source>
+    <name>out</name>
+    <type>$type</type>
+    <vlen>$vlen</vlen>
+  </source>
+</block>
